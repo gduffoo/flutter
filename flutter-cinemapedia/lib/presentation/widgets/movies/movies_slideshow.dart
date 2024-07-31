@@ -77,4 +77,3 @@ class _Slide extends StatelessWidget {
     );
   }
 }
-
