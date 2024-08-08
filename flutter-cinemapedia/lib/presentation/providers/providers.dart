@@ -4,3 +4,4 @@ export 'movies/movies_slideshow_provider.dart';
 export 'movies/initial_loading_provider.dart';
 export 'package:cinemapedia/presentation/providers/actors/actors_by_movie_providers.dart';
 export 'package:cinemapedia/presentation/providers/movies/movie_info_provider.dart';
+export 'search/search_movies_provider.dart';
