@@ -5,7 +5,7 @@ import 'package:teslo_shop/features/products/presentation/providers/products_rep
 //enlazar el notifier con el state
 final productsProvider =
     StateNotifierProvider<ProductsNotifier, ProductsState>((ref) {
-  final productsRepository = ref.watch(productRepositoryProvider);
+  final productsRepository = ref.watch(productsRepositoryProvider);
 
   return ProductsNotifier(productsRepository: productsRepository);
 });
