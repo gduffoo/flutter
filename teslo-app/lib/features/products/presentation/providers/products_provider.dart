@@ -4,17 +4,18 @@ import 'package:teslo_shop/features/products/presentation/providers/products_rep
 
 //enlazar el notifier con el state
 final productsProvider =
-    StateNotifierProvider<ProductsNotifier, ProductState>((ref) {
+    StateNotifierProvider<ProductsNotifier, ProductsState>((ref) {
   final productsRepository = ref.watch(productRepositoryProvider);
 
   return ProductsNotifier(productsRepository: productsRepository);
 });
 
 //2 como se manejan los datos del state
-class ProductsNotifier extends StateNotifier<ProductState> {
+class ProductsNotifier extends StateNotifier<ProductsState> {
   final ProductsRepository productsRepository;
 
-  ProductsNotifier({required this.productsRepository}) : super(ProductState()) {
+  ProductsNotifier({required this.productsRepository})
+      : super(ProductsState()) {
     loadNextPage(); //cuando se crea la instancia carga los datos
   }
 
@@ -44,22 +45,14 @@ class ProductsNotifier extends StateNotifier<ProductState> {
 }
 
 //1 que datos se quieren controlar
-class ProductState {
+class ProductsState {
   final bool isLastPage;
   final int limit;
   final int offset;
   final bool isLoading;
   final List<Product> products;
 
-/*
-  ProductState(
-      {required this.isLastPage,
-      required this.limit,
-      required this.offset,
-      required this.isLoading,
-      required this.products});
-*/
-  ProductState({
+  ProductsState({
     this.isLastPage = false,
     this.limit = 10,
     this.offset = 0,
@@ -67,14 +60,14 @@ class ProductState {
     this.products = const [],
   });
 
-  ProductState copyWith({
+  ProductsState copyWith({
     bool? isLastPage,
     int? limit,
     int? offset,
     bool? isLoading,
     List<Product>? products,
   }) =>
-      ProductState(
+      ProductsState(
           isLastPage: isLastPage ?? this.isLastPage,
           limit: limit ?? this.limit,
           offset: offset ?? this.offset,

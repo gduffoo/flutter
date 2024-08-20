@@ -31,12 +31,18 @@ final goRouterProvider = Provider((ref) {
         path: '/',
         builder: (context, state) => const ProductsScreen(),
       ),
+      GoRoute(
+        path: '/product/:id',
+        builder: (context, state) => ProductScreen(
+          productId: state.pathParameters['id'] ?? 'no-id',
+        ),
+      ),
     ],
     redirect: (context, state) {
       final isgoingTo = state.matchedLocation;
       final authStatus = goRouterNotifier.authStatus;
 
-      print('authstatus:  $authStatus  isgoingTo: $isgoingTo');
+      //print('authstatus:  $authStatus  isgoingTo: $isgoingTo');
 
       if (isgoingTo == "/splash" && authStatus == AuthStatus.checking) {
         //return null;

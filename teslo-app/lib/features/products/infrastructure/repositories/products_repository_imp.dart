@@ -19,4 +19,9 @@ class ProductsRepositoryImpl extends ProductsRepository {
   Future<List<Product>> getProductByPage({int limit = 10, int offset = 0}) {
     return datasource.getProductByPage(limit: limit, offset: offset);
   }
+
+  @override
+  Future<List<Product>> searchProductByTerm(String term) {
+    return datasource.searchProductByTerm(term);
+  }
 }
