@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:teslo_shop/features/products/domain/domain.dart';
 import 'package:teslo_shop/features/products/presentation/providers/products_repository_provider.dart';
@@ -19,6 +21,27 @@ class ProductsNotifier extends StateNotifier<ProductsState> {
     loadNextPage(); //cuando se crea la instancia carga los datos
   }
 
+  Future<bool> createOrUpdateProduct(Map<String, dynamic> productLike) async {
+    try {
+      final product = await productsRepository.createUpdateProduct(productLike);
+      final isProductInList =
+          state.products.any((element) => element.id == product.id);
+      if (!isProductInList) {
+        //no existe
+        state = state.copyWith(products: [...state.products, product]);
+        return true;
+      }
+
+      state = state.copyWith(
+          products: state.products
+              .map((element) => (element.id == product.id) ? product : element)
+              .toList());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   Future loadNextPage() async {
     //evitar que llamen varias veces el motodo
     if (state.isLoading || state.isLastPage) return;
@@ -29,14 +52,14 @@ class ProductsNotifier extends StateNotifier<ProductsState> {
         limit: state.limit, offset: state.offset);
 
     if (products.isEmpty) {
-      state.copyWith(
+      state = state.copyWith(
         isLoading: false,
         isLastPage: true,
       );
       return;
     }
 
-    state.copyWith(
+    state = state.copyWith(
         isLastPage: false,
         isLoading: false,
         offset: state.offset + 10,

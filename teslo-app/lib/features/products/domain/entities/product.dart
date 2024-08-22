@@ -1,3 +1,4 @@
+//import 'package:equatable/equatable.dart';
 import 'package:teslo_shop/features/auth/domain/domain.dart';
 
 class Product {
@@ -24,6 +25,12 @@ class Product {
     required this.gender,
     required this.tags,
     required this.images,
-    required this.user,
+    this.user,
   });
+
+/*
+  @override
+  // TODO: implement props
+  List<Object?> get props => ['id'];
+*/
 }
