@@ -16,3 +16,15 @@ Este es un proyecto para trabajar con:
 # Importante
 Recuerden leer y seguir la guía para montar el backend localmente.
 
+//para cambiar el nombre de la aplicacion
+change_app_package_name
+
+dart run change_app_package_name:main com.new.package.name
+
+
+//para cambiar icono aplicacion
+flutter pub run flutter_launcher_icons
+
+
+//cambiar splash screen
+dart run flutter_native_splash:create
