@@ -455,7 +455,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       compareFn: (item, sItem) => item.id == sItem.id,
                       dropdownDecoratorProps: DropDownDecoratorProps(
                         dropdownSearchDecoration: InputDecoration(
-                          labelText: 'User *',
+                          labelText: 'User ***',
                           filled: true,
                           fillColor:
                               Theme.of(context).inputDecorationTheme.fillColor,
